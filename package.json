@@ -1,0 +1,30 @@
+{
+  "name": "website-optimization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhjgithub/Website-Optimization_zh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhjgithub/Website-Optimization_zh/issues"
+  },
+  "homepage": "https://github.com/zhjgithub/Website-Optimization_zh#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-image-resize": "^0.12.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-inline-images": "^1.2.6",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "imagemin-jpegoptim": "^5.1.0"
+  }
+}
