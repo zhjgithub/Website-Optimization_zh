@@ -1,4 +1,5 @@
-const gulp = require('gulp'),
+const output = 'dist',
+    gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
@@ -25,7 +26,7 @@ function minifyHtml(stream) {
             removeComments: true
         }))
         .pipe(replace(/(\s*\n){3,}/g, '\n\n'))
-        .pipe(gulp.dest('dist/'))
+        .pipe(gulp.dest(output))
 }
 
 let resizeImageTasks = [];
@@ -47,7 +48,8 @@ let resizeImageTasks = [];
             .pipe(rename({
                 suffix: '-' + size
             }))
-            .pipe(gulp.dest('dist'))
+            .pipe(gulp.dest(output))
+            .pipe(gulp.dest('src'))
     });
     resizeImageTasks.push(resizeImageTask);
 });
@@ -67,7 +69,7 @@ gulp.task('images', () =>
     ], {
         verbose: true
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(output))
 );
 
 gulp.task('styles', () =>
@@ -78,7 +80,7 @@ gulp.task('styles', () =>
     .pipe(rename({
         suffix: '.min'
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(output))
     // .pipe(notify({
     //     message: 'Styles task complete'
     // }))
@@ -95,7 +97,7 @@ gulp.task('scripts', () =>
     .pipe(rename({
         suffix: '.min'
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(output))
     // .pipe(notify({
     //     message: 'Scripts task complete'
     // }))
@@ -106,7 +108,11 @@ gulp.task('index', function () {
         .pipe(replace(/<link href="css\/style.css"[^>]*>/, function (s) {
             let style = fs.readFileSync('src/css/style.css', 'utf8');
             return '<style>\n' + style + '\n</style>';
-        }));
+        }))
+        .pipe(replace(/(views\/images\/pizzeria)(.jpg)/, '$1-100$2'))
+        .pipe(inlineImages({
+            selector: 'img[src]'
+        }))
 
     return minifyHtml(stream);
 });
