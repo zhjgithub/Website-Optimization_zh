@@ -6,7 +6,33 @@ html {
   -webkit-text-size-adjust: none;
 }
 body { margin: 0; font-size: 14px; line-height: 1.61; font-weight: 400; }
-body, button, input, select, textarea { font-family: 'Open Sans', sans-serif; color: #333; }
+body, button, input, select, textarea { font-family: sans-serif; color: #333; }
+
+.wf-active body,
+.wf-active button,
+.wf-active input,
+.wf-active select,
+.wf-active textarea {
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  visibility: visible;
+}
+/*.wf-inactive body,
+.wf-inactive button,
+.wf-inactive input,
+.wf-inactive select,
+.wf-inactive textarea {
+  font-family: sans-serif;
+  color: #333;
+  visibility: visible;
+}
+.wf-loading body,
+.wf-loading button,
+.wf-loading input,
+.wf-loading select,
+.wf-loading textarea {
+  visibility: hidden;
+}*/
 
 a { color: #12C; }
 a:visited { color: #61C; }
