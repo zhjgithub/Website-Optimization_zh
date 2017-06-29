@@ -31,26 +31,32 @@ function minifyHtml(stream) {
 
 let resizeImageTasks = [];
 
-[100, 360, 720].forEach(function (size) {
-    let resizeImageTask = 'resize_' + size;
-    gulp.task(resizeImageTask, function () {
-        return gulp.src('src/views/images/pizzeria.jpg', {
-                base: 'src'
-            })
-            .pipe(imageResize({
-                width: size,
-                filter: 'Catrom'
-            }))
-            .pipe(imagemin({
-                progressive: true,
-                verbose: true
-            }))
-            .pipe(rename({
-                suffix: '-' + size
-            }))
-            .pipe(gulp.dest(output))
-            .pipe(gulp.dest('src'))
-    });
+[{
+    suffix: '-100',
+    size: 100
+}, {
+    suffix: '',
+    size: 720
+}].forEach(function (element) {
+    let resizeImageTask = 'resize_' + element.size;
+    gulp.task(resizeImageTask, () =>
+        gulp.src('src/views/images/pizzeria.jpg', {
+            base: 'src'
+        })
+        .pipe(imageResize({
+            width: element.size,
+            filter: 'Catrom'
+        }))
+        .pipe(imagemin({
+            progressive: true,
+            verbose: true
+        }))
+        .pipe(rename({
+            suffix: element.suffix
+        }))
+        .pipe(gulp.dest(output))
+    );
+    
     resizeImageTasks.push(resizeImageTask);
 });
 
