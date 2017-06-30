@@ -512,8 +512,11 @@ window.addEventListener('scroll', function () {
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var maxHeight = Math.max(window.innerHeight, window.screen.height);
+  var pizzaCount = Math.ceil(1.0 * maxHeight / s) * cols;
+  console.log(maxHeight / s);
   var movingPizzasContainer = document.getElementById("movingPizzas1");
-  for (var i = 0; i < 80; i++) {
+  for (var i = 0; i < pizzaCount; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
